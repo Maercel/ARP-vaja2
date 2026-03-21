@@ -17,7 +17,12 @@ namespace ansi_codes {
 
 int main(int argc, char** argv) 
 {
-	
+	if (argc != 2) {
+		cerr << ansi_codes::color_red <<"Invalid program input.\n" << ansi_codes::color_green <<"Valid format: vaja2 <input_file> \n" << ansi_codes::color_reset;  
+        return 1; 
+	}
+
+	string file_name = argv[1];
 
 	return 0;
 }
