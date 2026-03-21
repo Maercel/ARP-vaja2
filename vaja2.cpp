@@ -15,6 +15,8 @@ namespace ansi_codes {
 	constexpr const char* console_clear_line = "\33[2K";
 }
 
+vector<unsigned char> read(const string& file_name) {}
+
 int main(int argc, char** argv) 
 {
 	if (argc != 2) {
