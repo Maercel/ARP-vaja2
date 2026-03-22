@@ -3,9 +3,13 @@
 #include <string>
 #include <fstream>
 #include <sstream>
+#include <algorithm>
+#include <execution>
+#include <cstring>
 
 using namespace std;
 
+constexpr const char* output_file_name = "primer_izhoda";
 
 namespace ansi_codes {
 	constexpr const char* color_reset = "\033[0m";
@@ -23,23 +27,22 @@ void error(const string& msg) {
 
 vector<unsigned char> read(const string& file_name) {
     ifstream input_stream {file_name}; 
-
-    vector<unsigned char> res; 
     if (!input_stream) {
         error("Coudln't open target for reading. ");
     }
 
-    string line;
-    while (getline(input_stream, line)) {
-        for (const char c : line) {
-            res.push_back(static_cast<unsigned char>(c));
-        }
+    
+    vector<unsigned char> res; 
+    unsigned int num; 
+    while (input_stream >> num) {
+        if (num > 255) error("Value out of unsigned char range. " + to_string(num) + "\n");
+        res.push_back(static_cast<unsigned char>(num));
     }
-
-    input_stream.close(); 
-
+    
     return res; 
 }
+
+void write(const vector<unsigned char>& output_vec) {}
 
 int main(int argc, char** argv) 
 {
@@ -52,7 +55,7 @@ int main(int argc, char** argv)
 
 	string file_name = argv[1];
     const vector<unsigned char> input_vec = read(file_name); 
-
+    write(input_vec);
     
 
 
