@@ -54,7 +54,23 @@ void write(const vector<unsigned char>& output_vec) {
     output_file.close(); 
 }
 
-void binary_radix_sort(vector<unsigned char>& input_vec) {}
+void binary_radix_sort(vector<unsigned char>& input_vec) {
+
+    for (int x = 0; x < 8; x++) {
+        vector<unsigned char> D(input_vec.size() * 7); 
+
+        for (size_t i = 0; i < input_vec.size(); ++i) {
+            D[i] = (input_vec[i] >> x) & 1;
+        }
+
+        // TODO: implement sorting
+    }
+
+
+
+    // SORT
+
+}
 
 int main(int argc, char** argv) 
 {
@@ -65,12 +81,13 @@ int main(int argc, char** argv)
         return 1; 
 	}
 
-	string file_name = argv[1];
+	string file_name = argv[1]; 
     vector<unsigned char> input_vec = read(file_name); 
 
     binary_radix_sort(input_vec);  
 
-    write(input_vec);
+    //write(input_vec);
+
 
 	return 0;
 }
