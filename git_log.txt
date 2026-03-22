@@ -1,3 +1,4 @@
+* aafc363 Added git_log.txt file with git log information.
 * 27334ef Added binary_radix_sort implementation()
 * e2b6044 Added vector of k bits and his implementation to the binary_radix_method
 * 58c95e8 Added binary_radix_sort method implementation, and removed wrong file for execution with a typo.
