@@ -1,0 +1,11 @@
+* 27334ef Added binary_radix_sort implementation()
+* e2b6044 Added vector of k bits and his implementation to the binary_radix_method
+* 58c95e8 Added binary_radix_sort method implementation, and removed wrong file for execution with a typo.
+* c3ac4f3 Added write method implementation
+* fe2600e Added write function definition
+* 00d46b3 Completed read function for reading from file
+* 8e8eba5 Added read function
+* f99d7a6 Added console input configuration which gets file_name from argv[1]
+* ca5950b Added main function, ansi_codes and libraries
+* 739c564 Added main file (vaja2.cpp)
+* 8b453f2 Initial commit
