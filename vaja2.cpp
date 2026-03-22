@@ -54,6 +54,8 @@ void write(const vector<unsigned char>& output_vec) {
     output_file.close(); 
 }
 
+void binary_radix_sort(vector<unsigned char>& input_vec) {}
+
 int main(int argc, char** argv) 
 {
     ios_base::sync_with_stdio(false); // for better iostreams performance
@@ -64,10 +66,11 @@ int main(int argc, char** argv)
 	}
 
 	string file_name = argv[1];
-    const vector<unsigned char> input_vec = read(file_name); 
-    write(input_vec);
-    
+    vector<unsigned char> input_vec = read(file_name); 
 
+    binary_radix_sort(input_vec);  
+
+    write(input_vec);
 
 	return 0;
 }
