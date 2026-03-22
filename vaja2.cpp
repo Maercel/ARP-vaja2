@@ -42,7 +42,17 @@ vector<unsigned char> read(const string& file_name) {
     return res; 
 }
 
-void write(const vector<unsigned char>& output_vec) {}
+void write(const vector<unsigned char>& output_vec) {
+    ofstream output_file {output_file_name};
+    if (!output_file.is_open()) error("Coudln't open target for reading. ");
+    
+
+    for_each(output_vec.begin(), output_vec.end(), [&output_file](unsigned char uch) {
+        output_file << (unsigned int)uch << ' '; 
+    });
+
+    output_file.close(); 
+}
 
 int main(int argc, char** argv) 
 {
