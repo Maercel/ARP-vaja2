@@ -52,7 +52,7 @@ void write(const vector<unsigned char>& output_vec) {
     output_file.close(); 
 }
 
-void binary_radix_sort(vector<unsigned char>& input_vec) {
+void binary_radix_sort(vector<unsigned char>& input_vec) { // nekaj
     vector<unsigned char> B(input_vec.size()); 
 
     for (int x = 0; x < 8; x++) {
