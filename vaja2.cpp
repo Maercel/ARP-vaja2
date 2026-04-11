@@ -55,9 +55,9 @@ void write(const vector<unsigned char>& output_vec) {
 void binary_radix_sort(vector<unsigned char>& input_vec) {
     vector<unsigned char> B(input_vec.size()); 
 
-    for (int x = 0; x < 8; x++) {
+    for (int x = 0; x < sizeof(unsigned char) x++) {
         vector<unsigned char> D(input_vec.size()); 
-        vector<unsigned int> C(2, 0); 
+        vector<unsigned int> C(2, 0); 					
 
         for (size_t i = 0; i < input_vec.size(); ++i) {
             D[i] = (input_vec[i] >> x) & 1;
