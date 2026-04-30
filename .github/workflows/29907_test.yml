@@ -30,7 +30,7 @@ jobs:
 
       # upload artifact (file), so I can download it in next job (job 2 doesn't have it, runner starts each job in fresh environment)
       - name: Upload artifact
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@8
         with:
           name: napaka
           path: napaka.txt
@@ -49,7 +49,7 @@ jobs:
 
       # we get napaka.txt from here 
       - name: Download artifact
-        uses: actions/download-artifact@v3
+        uses: actions/download-artifact@v8
         with:
           name: napaka
       # file exists and is not empty -> file has text (assuming error) -> exit 1 (kill, kill)
