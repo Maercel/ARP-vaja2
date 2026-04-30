@@ -1,0 +1,66 @@
+name: Tests
+
+on:
+  push:
+    branches: [ main ]
+
+jobs:
+  # first job
+  check_tests:
+    runs-on: self-hosted
+
+    steps:
+      # this clones my repo into runner
+      - name: checkout
+        uses: actions/checkout@v4
+
+      # displaying current work
+      - name: Current work
+        run: echo "Checking tests"
+
+      # checking if tests file script existance
+      - name: check_test
+        run: |
+          if [ ! -f tests/test.sh ]; then 
+            echo "Test script missing" > napaka.txt
+            exit 1
+          else
+            echo "" > napaka.txt
+          fi
+
+      # upload artifact (file), so I can download it in next job (job 2 doesn't have it, runner starts each job in fresh environment)
+      - name: Upload artifact
+        uses: actions/upload-artifact@v3
+        with:
+          name: napaka
+          path: napaka.txt
+
+  # second job
+  run_tests:
+    needs: check_tests
+    runs-on: self-hosted
+
+    steps:  
+      - uses: actions/checkout@v4
+
+      # displaying current work
+      - name: Current work
+        run: echo "Running tests"
+
+      # we get napaka.txt from here 
+      - name: Download artifact
+        uses: actions/download-artifact@v3
+        with:
+          name: napaka
+      # file exists and is not empty -> file has text (assuming error) -> exit 1 (kill, kill)
+      - name: Check napaka.txt
+        run: |
+          if [ -s napaka.txt ]; then
+            echo "Error detected, stopping."
+            exit 1
+          fi
+      # run test.sh 
+      - name: Run tests
+        run: |
+          chmod +x tests/test.sh
+          ./tests/test.sh
