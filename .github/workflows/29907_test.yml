@@ -18,14 +18,15 @@ jobs:
       - name: Current work
         run: echo "Checking tests"
 
-      # checking if tests file script existance
+      # checking if tests file script exists
+      # > napaka.txt creates file, opens, and makes it EMPTY
       - name: check_test
         run: |
           if [ ! -f tests/test.sh ]; then 
             echo "Test script missing" > napaka.txt
             exit 1
           else
-            echo "" > napaka.txt
+            > napaka.txt
           fi
 
       # upload artifact (file), so I can download it in next job (job 2 doesn't have it, runner starts each job in fresh environment)
