@@ -1,0 +1,32 @@
+name: Deploy
+
+env:
+  DOCKER_USERNAME: ${{ secrets.DOCKER_USERNAME }}
+  DOCKER_PASSWORD: ${{ secrets.DOCKER_PASSWORD }}
+  REPONAME: ${{ secrets.REPO_NAME }}
+
+on:
+  workflow_run:
+    workflows: ["Tests"]   # other workflows names
+    types:
+      - completed
+
+jobs:
+  deploy:
+    # checks if the other workflow was sucessful
+    if: ${{ github.event.workflow_run.conclusion == 'success' }}
+    runs-on: self-hosted
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Potisni na docker hub z akcijo
+        uses: mr-smithers-excellent/docker-build-push@v6
+        with:
+          username: ${{ env.DOCKER_USERNAME }}
+          password: ${{ env.DOCKER_PASSWORD }}
+          registry: docker.io
+          dockerfile: Dockerfile
+          tags: latest
+          image: ${{env.DOCKER_USERNAME}}/${{ env.REPONAME }}
