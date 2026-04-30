@@ -1,8 +1,8 @@
 #!/bin/bash
 
-g++ main.cpp -o program
+g++ vaja2.cpp -o vaja2
 
-./program tests/test1_input.txt
+./vaja2 tests/test1_expected.txt
 
 diff primer_izhoda tests/test1_expected.txt
 
