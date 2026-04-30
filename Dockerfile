@@ -4,6 +4,6 @@ WORKDIR /app
 
 COPY . .
 
-RUN g++ main.cpp -o program
+RUN g++ vaja2.cpp -o vaja2
 
-CMD ["./program", "tests/test1_input.txt"]
+CMD ["./vaja2", "tests/test1_input.txt"]
