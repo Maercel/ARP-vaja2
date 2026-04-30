@@ -39,14 +39,27 @@ jobs:
   # second job
   run_tests:
     needs: check_tests
-    runs-on: self-hosted
 
+    # running concurrently -> 2 new jobs (ubuntu, fedora - my machine)
+    strategy: 
+      matrix: 
+        include:
+          - runs-on: ubuntu-latest
+            label: github
+          - runs-on: self-hosted
+            label: local
+    
+    runs-on: ${{ matrix.runs-on }}
+    
     steps:  
       - uses: actions/checkout@v4
 
       # displaying current work
       - name: Current work
         run: echo "Running tests"
+
+      - name: Print environment
+        run: echo "Running on ${{ matrix.label }}"
 
       # we get napaka.txt from here 
       - name: Download artifact
